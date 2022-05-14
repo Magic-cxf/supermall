@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <h1>welcome to my supermall</h1>
-    <p>test git </p>
-  </div>
+
+  <router-view></router-view>
+  <tab-bar></tab-bar>
+  
 </template>
 
 <script>
+import tabBar from 'components/common/tabBar/tabBar'
 export default {
   name:"App",
+  components:{
+    tabBar
+  },
   data () {
     return {
     };
