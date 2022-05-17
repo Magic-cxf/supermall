@@ -1,7 +1,7 @@
 <template>
     <div class="home">
       <head-line></head-line>
-      <carousel></carousel>
+      <carousel :imgs="homedata"></carousel>
     </div>
 </template>
 
@@ -9,7 +9,7 @@
 import headLine from './homeChildren/headLine.vue'
 import carousel from 'components/common/carousel/carousel.vue'
 
-import getHomeCrousel from 'network/homeRequest.js'
+import getHomeCarousel from 'network/homeRequest.js'
 
 export default {
   components:{
@@ -18,14 +18,18 @@ export default {
   },
   data () {
     return {
-      homedata:{}
+      homedata:[]
     };
   },
   created(){
-    getHomeCrousel().then((res)=>{
-      this.homedata = res
-      console.log(this.homedata)
+    
+    getHomeCarousel().then((res)=>{
+      const data =res.data.data.banner.list
+      for (let i in data){
+        this.homedata.push(data[i].image)
+      } 
     })
+
   },
   methods:{
     test:function(){

@@ -1,11 +1,24 @@
 <template>
   <el-carousel indicator-position="" height="250px">
-    <el-carousel-item v-for="item in 4" :key="item">
-      <h3 text="2xl" justify="center">{{ item }}</h3>
+    <el-carousel-item v-for="item in imgs" :key="item">
+      <h3 text="2xl" justify="center">
+        <img :src="item" alt="">
+      </h3>
     </el-carousel-item>
   </el-carousel>
 </template>
-
+<script>
+  export default {
+    props:{
+      imgs:{
+        type:Object,
+        default(){
+          return []
+        }
+      }
+    }
+  }
+</script>
 <style scoped>
 .el-carousel__item h3 {
   display: flex;
@@ -21,5 +34,9 @@
 
 .el-carousel__item:nth-child(2n + 1) {
   background-color: #d3dce6;
+}
+.el-carousel__item img{
+  width: 100%;
+  height: 250px;
 }
 </style>
