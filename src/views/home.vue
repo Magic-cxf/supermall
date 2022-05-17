@@ -24,10 +24,8 @@ export default {
   created(){
     
     getHomeCarousel().then((res)=>{
-      const data =res.data.data.banner.list
-      for (let i in data){
-        this.homedata.push(data[i].image)
-      } 
+      this.homedata =res.data.data.banner.list
+
     })
 
   },
