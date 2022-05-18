@@ -2,7 +2,7 @@
   <div class="header">
       <div class="left"></div>
       <div class="center">
-          supermall
+          Supermall
       </div>
       <div class="right"></div>
   </div>
@@ -23,6 +23,9 @@ export default {
     height: 44px;
     display: flex;
     background-color: pink;
+    position: fixed;
+    top: 0;
+    z-index: 9;
 }
 .left{
     width: 60px;

@@ -66,9 +66,12 @@ export default {
     height: 49px;
     position:fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-evenly;
     border-top: 1px solid rgba(0, 0,0, 0.1);
     background: rgb(248, 249, 249);
+    z-index: 9;
 }
 </style>

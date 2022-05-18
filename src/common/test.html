@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+    <div>
+        <p>请输入：<input type="text"></p>
+        <p>你输入的值为：<span></span></p>
+    </div>
+    <script>
+        function debounce(func,delay=500){
+            let timer = null;
+            return function (){
+                clearTimeout(timer)
+                timer = setTimeout(()=>{
+                    func.apply(this,arguments)
+                },delay)
+            }
+        }
+
+        let target = document.querySelector('span')
+        let origin = document.querySelector('input')
+
+        origin.addEventListener('keydown',debounce(function(e){
+            console.log(this)
+            target.innerText = this.value
+        }),true)
+
+    </script>
+</body>
+</html>
