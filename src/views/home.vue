@@ -1,9 +1,10 @@
 <template>
     <div class="home">
       <head-line></head-line>
-      <better-scroll @scroll="contextScroll" ref="scroll">
-        <carousel :imgs="homedata"></carousel>
-        <recommend @changeType="changeType"></recommend>
+      <recommend @changeType="changeType" ref="recommend1" v-show="isshow"></recommend>
+      <better-scroll @scroll="contextScroll" ref="scroll" @pullupload="pullUpLoad">
+        <carousel :imgs="homedata" @load="imgLoad"></carousel>
+        <recommend @changeType="changeType" ref="recommend"></recommend>
         <goods :goodslist="goodslist"></goods>
       </better-scroll>
       <back-top @click.native="backTop" v-show="isbacktop"></back-top>
@@ -39,7 +40,9 @@ export default {
         "sell":{page:0,list:[]}
       },
       currentType:"pop",
-      isbacktop:false
+      isbacktop:false,
+      isload:false,
+      isshow:false
     };
   },
   created(){
@@ -49,10 +52,20 @@ export default {
       this.$store.state.homeModule.carouseldata=this.homedata
       })
     };
-    getGoods(this.currentType,1).then(res=>{
-      this.goods[this.currentType].list.push(...res.data.data.list)
-    })
+    getGoods("pop",1).then(res=>{
+      this.goods["pop"].list.push(...res.data.data.list)
+    });
+    getGoods("new",1).then(res=>{
+      this.goods["new"].list.push(...res.data.data.list)
+    });
+    getGoods("sell",1).then(res=>{
+      this.goods["sell"].list.push(...res.data.data.list)
+    });
+    
 
+  },
+  mounted(){
+    
   },
   methods:{
     changeType(index){
@@ -63,19 +76,34 @@ export default {
       }else{
         this.currentType = "sell"
       }
-      getGoods(this.currentType,1).then(res=>{
-        this.goods[this.currentType].list.push(...res.data.data.list)
-      })
+      this.$refs.recommend.currentIndex = index
+      this.$refs.recommend1.currentIndex = index
     },
     contextScroll(position){
       if(position.y < -800){
         this.isbacktop = true
       }else(
         this.isbacktop = false
-      )
+      );
+      if(position.y <= -250){
+        this.isshow = true
+      }else{
+        this.isshow = false
+      }
     },
     backTop(){
-      this.$refs.scroll.scroll.scrollTo(0,0)
+      this.$refs.scroll.scroll.scrollTo(0,0,500)
+    },
+    pullUpLoad(){
+      getGoods(this.currentType,++this.goods[this.currentType].page).then(res=>{
+        this.goods[this.currentType].list.push(...res.data.data.list)
+      })
+    },
+    imgLoad(){
+      if(!this.isload){
+        console.log(this.$refs.recommend.$el.offsetTop)
+        this.isload = true
+      }
     }
   },
   computed:{

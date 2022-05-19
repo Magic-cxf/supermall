@@ -19,13 +19,14 @@ export default {
 </script>
 <style scoped>
 .header{
-    width: 100%;
+    width: 100vw;
     height: 44px;
     display: flex;
     background-color: pink;
     position: fixed;
     top: 0;
     z-index: 9;
+    margin-bottom: -1px;
 }
 .left{
     width: 60px;

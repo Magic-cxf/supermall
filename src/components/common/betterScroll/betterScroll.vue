@@ -25,11 +25,16 @@ export default {
                 easeTime: 300
           },
           observeDOM:true,
-          observeImage:true
+          observeImage:true,
+          pullUpLoad:true
 
       });
       this.scroll.on('scroll',(position)=>{
           this.$emit('scroll',position)
+      });
+      this.scroll.on('pullingUp',()=>{
+          this.$emit('pullupload')
+          this.scroll.finishPullUp()
       })
   }
 }

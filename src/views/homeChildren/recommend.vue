@@ -53,9 +53,8 @@ export default {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: rgba(248, 249, 249);
-    position: sticky;
-    top: 44px;
+    background-color: white;
+    position: relative;
     z-index: 9;
 }
 .recommend div{
