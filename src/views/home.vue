@@ -1,11 +1,12 @@
 <template>
     <div class="home">
       <head-line></head-line>
-      <better-scroll @scroll="contextScroll">
+      <better-scroll @scroll="contextScroll" ref="scroll">
         <carousel :imgs="homedata"></carousel>
         <recommend @changeType="changeType"></recommend>
         <goods :goodslist="goodslist"></goods>
       </better-scroll>
+      <back-top @click.native="backTop" v-show="isbacktop"></back-top>
     </div>
 </template>
 
@@ -15,6 +16,7 @@ import carousel from 'components/common/carousel/carousel.vue'
 import recommend from './homeChildren/recommend.vue'
 import goods from 'components/context/goods/goods.vue'
 import betterScroll from 'components/common/betterScroll/betterScroll.vue'
+import backTop from './homeChildren/backTop.vue'
 
 import {getHomeCarousel,getGoods}from 'network/homeRequest.js'
 
@@ -25,7 +27,8 @@ export default {
     carousel,
     recommend,
     goods,
-    betterScroll
+    betterScroll,
+    backTop
   },
   data () {
     return {
@@ -35,7 +38,8 @@ export default {
         "new":{page:0,list:[]},
         "sell":{page:0,list:[]}
       },
-      currentType:"pop"
+      currentType:"pop",
+      isbacktop:false
     };
   },
   created(){
@@ -64,7 +68,14 @@ export default {
       })
     },
     contextScroll(position){
-      console.log(position)
+      if(position.y < -800){
+        this.isbacktop = true
+      }else(
+        this.isbacktop = false
+      )
+    },
+    backTop(){
+      this.$refs.scroll.scroll.scrollTo(0,0)
     }
   },
   computed:{

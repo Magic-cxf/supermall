@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>throttle</title>
+</head>
+<body>
+    <div>
+        <p>请输入：<input type="text"></p>
+        <p>你输入的值为：<span></span></p>
+    </div>
+    <script>
+        // function throttle(func,delay=500){
+        //     let oldTime = Date.now()
+        //     return function(...args){
+        //         let newTime = Date.now()
+        //         if(newTime-oldTime>=delay){
+        //             func.apply(null,args)
+        //             oldTime = Date.now()
+        //         }
+        //     }
+        // }
+        function throttle(func,delay = 1500){
+            let timer = null
+            return function(arguments){
+                if(!timer){
+                    setTimeout(()=>{
+                        func.apply(this,arguments)
+                        timer = null
+                    },delay)
+                }
+            }
+        }
+        let input = document.querySelector('input')
+        let span = document.querySelector('span')
+
+        input.addEventListener('keyup',throttle(function(e){
+            span.innerText = this.value
+        }
+        ))
+    </script>
+</body>
+</html>
