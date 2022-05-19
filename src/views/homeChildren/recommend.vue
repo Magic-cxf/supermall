@@ -21,7 +21,7 @@ export default {
   created(){
     if(this.$store.state.currentType == "pop"){
       this.currentIndex =0
-    }else if(this.$store.state.currentType == "news"){
+    }else if(this.$store.state.currentType == "new"){
       this.currentIndex =1
     }else{
       this.currentIndex =2

@@ -4,6 +4,7 @@ const Home = ()=>import('views/home.vue')
 const Product = ()=>import('views/product.vue')
 const Cart = ()=>import ('views/cart.vue')
 const Account = ()=>import('views/account.vue')
+const Detail = ()=>import('views/detail.vue')
 
 
 const routes=[
@@ -26,6 +27,10 @@ const routes=[
     {
         path:'/account',
         component:Account
+    },
+    {
+        path:'/detail/:iid',
+        component:Detail
     }
 ]
 

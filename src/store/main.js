@@ -3,14 +3,14 @@ import {createStore} from 'vuex'
 const homeModule={
     state(){
         return {
-            carouseldata:[]
+            carouseldata:[],
         }
     }
 }
 const store = createStore({
     state(){
         return {
-            currentType:"pop"
+            currentType:"pop",
         }
     },
     mutations:{},

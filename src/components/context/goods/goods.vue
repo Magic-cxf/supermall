@@ -1,6 +1,6 @@
 <template>
   <div class = "goods" >
-        <goods-item v-for="item in goodslist" :key="item">
+        <goods-item v-for="item in goodslist" :key="item" @click="goDetail(item.iid)">
             <template #picture>
                 <img :src="item.show.img" alt="">
             </template>
@@ -33,6 +33,11 @@ export default {
     return {
     };
   },
+  methods:{
+      goDetail(iid){
+          this.$router.push('/detail/'+iid)
+      }
+  }
 }
 
 </script>

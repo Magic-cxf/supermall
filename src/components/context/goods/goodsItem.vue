@@ -29,6 +29,7 @@ export default {
 .goodsitem img{
     width: 100%;
     height: 300px;
+    border-radius: 5px;
 }
 .goodsitem p{
   width: 98%;

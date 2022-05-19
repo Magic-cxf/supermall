@@ -3,7 +3,7 @@
       <head-line></head-line>
       <recommend @changeType="changeType" ref="recommend1" v-show="isshow"></recommend>
       <better-scroll @scroll="contextScroll" ref="scroll" @pullupload="pullUpLoad">
-        <carousel :imgs="homedata" @load="imgLoad"></carousel>
+        <carousel :imgs="homedata"></carousel>
         <recommend @changeType="changeType" ref="recommend"></recommend>
         <goods :goodslist="goodslist"></goods>
       </better-scroll>
@@ -33,16 +33,16 @@ export default {
   },
   data () {
     return {
-      homedata:this.$store.state.homeModule.carouseldata,
-      goods:{
+      homedata:this.$store.state.homeModule.carouseldata,     //利用vuex缓存一下轮播图里的图片 因为申请数据太慢
+      goods:{    //商品列表数据
         "pop":{page:0,list:[]},
         "new":{page:0,list:[]},
         "sell":{page:0,list:[]}
       },
-      currentType:"pop",
-      isbacktop:false,
-      isload:false,
-      isshow:false
+      currentType:"pop",    //当前类型
+      isbacktop:false,     //是否回到顶部
+      isshow:false,       
+      scrollposition:null
     };
   },
   created(){
@@ -64,8 +64,15 @@ export default {
     
 
   },
+  deactivated(){
+    this.scrollposition = this.$refs.scroll.scroll.y
+  },
+  activated(){
+    this.$refs.scroll.scroll.refresh()
+    this.$refs.scroll.scroll.scrollTo(0,this.scrollposition)
+  },
   mounted(){
-    
+
   },
   methods:{
     changeType(index){
@@ -89,7 +96,7 @@ export default {
         this.isshow = true
       }else{
         this.isshow = false
-      }
+      };
     },
     backTop(){
       this.$refs.scroll.scroll.scrollTo(0,0,500)
@@ -98,12 +105,6 @@ export default {
       getGoods(this.currentType,++this.goods[this.currentType].page).then(res=>{
         this.goods[this.currentType].list.push(...res.data.data.list)
       })
-    },
-    imgLoad(){
-      if(!this.isload){
-        console.log(this.$refs.recommend.$el.offsetTop)
-        this.isload = true
-      }
     }
   },
   computed:{
