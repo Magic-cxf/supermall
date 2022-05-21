@@ -19,11 +19,11 @@ export default {
       this.scroll =new BetterScroll('.wrapper',{
           probeType:3,
           click:true,
-          mouseWheel: {
-            speed: 20,
-            invert: false,
-                easeTime: 300
-          },
+        //   mouseWheel: {    //是否启用pc端鼠标滑轮
+        //     speed: 20,
+        //     invert: false,
+        //         easeTime: 300
+        //   },
           observeDOM:true,
           observeImage:true,
           pullUpLoad:true

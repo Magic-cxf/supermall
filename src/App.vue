@@ -3,7 +3,7 @@
     <keep-alive exclude="detail">
       <component :is="Component" />
     </keep-alive>
-</router-view>
+  </router-view>
   <tab-bar></tab-bar>
   
 </template>

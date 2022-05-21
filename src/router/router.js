@@ -1,10 +1,10 @@
 import {createRouter,createWebHistory} from 'vue-router'
 
-const Home = ()=>import('views/home.vue')
-const Product = ()=>import('views/product.vue')
-const Cart = ()=>import ('views/cart.vue')
-const Account = ()=>import('views/account.vue')
-const Detail = ()=>import('views/detail.vue')
+const Home = ()=>import('views/home/home.vue')
+const Product = ()=>import('views/product/product.vue')
+const Cart = ()=>import ('views/cart/cart.vue')
+const Account = ()=>import('views/account/account.vue')
+const Detail = ()=>import('views/detail/detail.vue')
 
 
 const routes=[

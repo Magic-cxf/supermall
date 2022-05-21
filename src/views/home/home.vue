@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import headLine from './homeChildren/headLine.vue'
+import headLine from 'components/context/headLine/headLine.vue'
 import carousel from 'components/common/carousel/carousel.vue'
 import recommend from './homeChildren/recommend.vue'
 import goods from 'components/context/goods/goods.vue'
@@ -61,6 +61,7 @@ export default {
     getGoods("sell",1).then(res=>{
       this.goods["sell"].list.push(...res.data.data.list)
     });
+    // this.$test.show("very good  i like it")     测试一下自己写的loast插件
     
 
   },

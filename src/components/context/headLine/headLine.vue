@@ -26,7 +26,6 @@ export default {
     position: fixed;
     top: 0;
     z-index: 9;
-    margin-bottom: -1px;
 }
 .left{
     width: 60px;

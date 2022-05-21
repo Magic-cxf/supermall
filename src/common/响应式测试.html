@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式测试</title>
+</head>
+<body>
+    <input type="text" value="">
+    <p></p>
+    <h2></h2>
+    <script>
+
+        // let p = document.querySelector('p')
+        // let h2 = document.querySelector('h2')
+
+        // const obj = {}
+        // obj.a= null
+        // obj.b = null
+
+        // let value1 = obj.a
+        // let value2 = obj.b
+
+
+        // Object.defineProperty(obj,'a',{
+        //     set(newvalue){
+        //         console.log("set new value")
+        //         p.innerText = newvalue
+        //         value1 = newvalue
+        //     },
+        //     get(){
+        //         console.log("正在调用")
+        //         return value1
+        //     }
+        // })
+
+        // class observe{
+        //     constructor(data){
+        //         this.data = data
+        //         Object.keys(data).forEach(key=>{
+        //             this.defineReactive(this.data,key,data[key])
+        //         })
+        //     }
+
+        //     defineReactive(obj,key,value){
+        //         const Dep = new Dep()
+
+        //         Object.defineProperty(obj,key,{
+        //             set(newvalue){
+        //                 value = newvalue
+        //             },
+        //             get(){
+
+        //                 return value
+        //             }
+        //         })
+        //     }
+        // }
+
+        // class Dep{
+        //     constructor(){
+        //         this.subscribe = []
+        //     }
+        // }
+
+        // const obj = {
+        //     a:"haha",
+        //     b:"bbb"
+        // }
+        // let value = obj.a
+        // Object.defineProperty(obj,"a",{
+        //     set(newvalue){
+        //         console.log("set new value")
+        //         value = newvalue
+        //     },
+        //     get(){
+        //         if(Dep.target){
+        //             console.log("haoren nishi ")
+        //         }
+        //         return value
+        //     }
+        // })
+
+        class Dep{
+            constructor(){
+                this.subscribe=[]
+            }
+            addSub(){}
+            notify(){}
+        }
+
+        // class person{
+        //     constructor(name,age,vm){
+        //         this.name = name
+        //         this.age = age
+        //         this.vm = vm
+        //         Dep.target = true
+        //         this.update()
+        //     }
+        //     update(){
+        //         this.value = this.vm['a']
+        //     }
+        // }
+
+        // const xf = new person("xiaowang",12,obj)
+        // console.log(xf.value)
+        
+        // class Person{
+        //     constructor(name){
+        //         this.name = name
+        //         Dep.good = true
+        //         this.getvalue()
+        //         this.obj = obj
+        //     }
+        //     getvalue(){
+        //         this.value = (function(){
+        //             if(Dep.good){
+        //             console.log("调用成功")
+        //         }
+        //         return 1
+        //         })()
+        //     }
+        // }
+
+
+        // obj = {
+        //     a:"hah",
+        //     test:function(){
+        //         if(isgood){
+        //             console.log("调用成功")
+        //         }
+        //         return 1
+        //     }
+        // }
+
+        // const xf = new Person()
+        // console.log(xf.value)
+        
+        const obj={
+            a:1,
+            b:2
+        }
+
+        function test1(){
+            obj.isgood = true
+            console.log("test1 is ok")
+            function haha(){
+                if(obj.isgood){
+                console.log("hah is ok")
+            }
+            }
+            haha()
+        }
+
+        // function test2(){
+        //     if(obj.isgood){
+        //         console.log("test2 is ok")
+        //     }
+        //     obj.isgood = null
+        // }
+        // test1(test2)
+        test1()
+    </script>
+</body>
+</html>

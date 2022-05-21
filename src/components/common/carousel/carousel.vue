@@ -2,7 +2,7 @@
   <el-carousel indicator-position="" height="250px">
     <el-carousel-item v-for="item in imgs" :key="item">
       <h3 text="2xl" justify="center">
-        <img :src="item.image" alt="">
+        <img :src="item.image || item" alt="">
       </h3>
     </el-carousel-item>
   </el-carousel>
@@ -11,7 +11,7 @@
   export default {
     props:{
       imgs:{
-        type:Object,
+        type:Object || Array,
         default(){
           return []
         }
