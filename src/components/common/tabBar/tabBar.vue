@@ -22,7 +22,7 @@
         发现
       </template>
     </tab-bar-item>
-    <tab-bar-item path="cart">
+    <tab-bar-item path="/cart">
       <template #picture>
         <img src="~assets/img/tabbaricon/cart.svg" alt="">
       </template>
@@ -33,7 +33,7 @@
         购物车
       </template>
     </tab-bar-item>
-    <tab-bar-item path="account">
+    <tab-bar-item path="/account">
       <template #picture>
         <img src="~assets/img/tabbaricon/account.svg" alt="" >
       </template>

@@ -1,6 +1,9 @@
 <template>
   <div class="wrapper">
-      <div class="content">
+      <div v-if="!color" class="content">
+          <slot></slot>
+      </div>
+      <div v-else class="content1">
           <slot></slot>
       </div>
   </div>
@@ -14,6 +17,12 @@ export default {
     return {
         scroll:null
     };
+  },
+  props:{
+    color:{
+      type:Boolean,
+      default:false
+    }
   },
   mounted(){
       this.scroll =new BetterScroll('.wrapper',{
@@ -48,5 +57,8 @@ export default {
     top: 44px;
     bottom: 49px;
     overflow: hidden;
+}
+.content1{
+  background-color: rgba(217, 217, 219,0.3);
 }
 </style>

@@ -50,11 +50,11 @@ export default {
     height: 44px;
 }
 .left img{
-    width: 40px;
-    height: 34px;
+    width: 20px;
+    height: 20px;
     position: relative;
     left: 20px;
-    top: 5px;
+    top: 12px;
 }
 .right {
     flex: 1;
