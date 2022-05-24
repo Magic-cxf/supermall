@@ -132,9 +132,6 @@ export default {
       },
       backToTop(){
         this.$refs.scroll.scroll.scrollTo(0,0)
-      },
-      testgit(){
-        console.log("fsafjldsfjlj")
       }
   }
 }
