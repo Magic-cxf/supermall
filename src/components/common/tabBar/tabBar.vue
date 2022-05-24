@@ -19,7 +19,7 @@
         <img src="~assets/img/tabbaricon/product-active.svg" alt="">
       </template>
       <template #text>
-        发现
+        分类
       </template>
     </tab-bar-item>
     <tab-bar-item path="/cart">

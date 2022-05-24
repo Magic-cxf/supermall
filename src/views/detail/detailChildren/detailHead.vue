@@ -23,7 +23,8 @@ export default {
   },
   methods:{
       infoChange(index){
-          this.currentIndex = index
+          this.currentIndex = index,
+          this.$emit('infochange',this.currentIndex)
       },
       goBack(){
           this.$router.back()

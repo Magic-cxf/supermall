@@ -10,6 +10,7 @@ import 'element-plus/dist/index.css'
 
 import showme from 'common/plugins/test'
 import getScore from 'common/plugins/getScore'
+import { timeFormate } from 'common/utils'
 
 
 
@@ -20,4 +21,5 @@ app.use(store)
 app.use(showme)
 
 app.config.globalProperties.$filter = getScore
+app.config.globalProperties.$timer = timeFormate
 app.mount('#app')
