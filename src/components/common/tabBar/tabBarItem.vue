@@ -54,6 +54,6 @@ export default {
     margin: auto;
 }
 .active{
-    color: red;
+    color: pink;
 }
 </style>

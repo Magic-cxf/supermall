@@ -14,7 +14,7 @@
       <img v-show="!iscollect"  src="~assets/img/detail/favor.svg" alt="">
       <img v-show="iscollect" src="~assets/img/detail/favor_fill.svg" alt="">
       <br>
-      <span>收藏</span>     
+      <span :class="{collectText:iscollect}">收藏</span>     
     </div>
     <div class="cart">
       <div @click="addCart">加入购物车</div>
@@ -64,7 +64,7 @@ export default {
   text-align: center;
   font-size: 12px;
   width: 50px;
-  color: red;
+  color: pink;
 }
 .wang{
   text-align: center;
@@ -102,5 +102,8 @@ export default {
   background-color: rgb(255, 95, 2);
   border-top-right-radius: 21px;
   border-bottom-right-radius: 21px;
+}
+.collectText{
+  color: pink;
 }
 </style>

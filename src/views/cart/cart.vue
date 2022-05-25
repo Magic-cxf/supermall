@@ -8,7 +8,7 @@ export default {
   setup(){
     const message = ref("that is ok")
     return{
-      message
+      message  
     }
   },
   data () {
