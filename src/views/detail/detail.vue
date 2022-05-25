@@ -71,7 +71,6 @@ export default {
       this.goodInfo.shopInfo = res.data.result.shopInfo
       this.goodInfo.comments = res.data.result.rate.list
       this.goodInfo.recommends = res.data.result.skuInfo.skus
-      console.log(res.data.result.itemInfo.topImages.slice(0,4))
     })
   },
   computed:{
