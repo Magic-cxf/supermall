@@ -1,13 +1,13 @@
 <template>
   <div class="cartInfo">
       <div class="infoTit">
-          <span>✔</span>
+          <span :class="{active1:isactive}" @click="selectCartGood">✔</span>
           <span>
               <slot name="shopName"></slot>
           </span>
       </div>
       <div class="infos">
-          <span>✔</span>
+          <span :class="{active1:isactive}" @click="selectCartGood">✔</span>
           <slot name="cartpicture"></slot>
           <div class="infoSelect">
               <p>
@@ -27,12 +27,23 @@
 <!-- 这是商品的一些基本信息展示✔ -->
 
 <script>
+import { ref } from 'vue'
+
 export default {
     name:"cartGoodItem",
     data () {
-        return {
-    };
-  },
+        return {}
+    },
+    setup(props,context){
+        const isactive = ref(false)
+
+        const selectCartGood = function(){
+            isactive.value = !isactive.value
+            console.log("hdhdh")
+        }
+
+        return{ isactive,selectCartGood}
+    },
 }
 
 </script>
@@ -140,7 +151,7 @@ export default {
     line-height: 25px;
 }
 .active1{
-
+    background-color: red;
 }
 .active2{
 

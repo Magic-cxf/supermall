@@ -19,6 +19,7 @@ const store = createStore({
         addGood({state, commit,getters},payload){
             if(getters.length == 0 ){
                 commit('incrementGood',payload)
+                console.log(state.cartGood)
                 return 
             }
             for(let index in state.cartGood){
