@@ -1,24 +1,24 @@
 import {createStore} from 'vuex'
 
-const homeModule={
-    state(){
-        return {
-            carouseldata:[],
-        }
-    }
-}
+
 const store = createStore({
     state(){
         return {
-            currentType:"pop",
+            cartGood:[]          //购物车商品
         }
     },
-    mutations:{},
+    mutations:{
+        addGood(state,payload){
+            state.cartGood.push(payload)
+        },
+    },
     actions:{},
-    getters:{},
-    modules:{
-        homeModule
-    }
+    getters:{
+        length(state){
+            return state.cartGood.length
+        }
+    },
+    modules:{}
 
 })
 

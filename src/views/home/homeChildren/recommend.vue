@@ -18,28 +18,13 @@ export default {
         currentIndex:0
     };
   },
-  created(){
-    if(this.$store.state.currentType == "pop"){
-      this.currentIndex =0
-    }else if(this.$store.state.currentType == "new"){
-      this.currentIndex =1
-    }else{
-      this.currentIndex =2
-    }
-  },
+  created(){},
   methods:{
       changeType(index){
           if(index == this.currentIndex){
             return 
           }
           this.currentIndex = index
-          if(index ==0){
-            this.$store.state.currentType = "pop"
-          }else if(index == 1){
-            this.$store.state.currentType = "new"
-          }else(
-            this.$store.state.currentType = "sell"
-          )
           this.$emit('changeType',index)
       }
   }

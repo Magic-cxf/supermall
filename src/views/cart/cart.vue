@@ -1,22 +1,34 @@
 <template>
-  <div><h1>welcome to cart {{message}}</h1></div>
+  <div>
+    <cart-head></cart-head>
+    <better-scroll>
+      <cart-good></cart-good>
+    </better-scroll>
+  </div>
 </template>
 
 <script>
-import { ref } from 'vue';
+import cartHead from './cartChildren/cartHead'
+import cartGood from './cartChildren/cartGood'
+
+
+import betterScroll from 'components/common/betterScroll/betterScroll'
+
 export default {
-  setup(){
-    const message = ref("that is ok")
-    return{
-      message  
+  name:"cart",
+  components:{
+    cartHead,
+    cartGood,
+    betterScroll
+  },
+  data(){
+    return {
     }
   },
-  data () {
-    return {
-    };
-  },
+  props:{},
+  methods:{
+  }
 }
-
 </script>
 <style >
 </style>

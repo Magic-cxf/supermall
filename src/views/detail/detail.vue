@@ -10,7 +10,7 @@
         <detail-comments :comments="goodInfo.comments" ref="customerComments"></detail-comments>
         <detail-recommend :recommends="goodInfo.recommends" ref="goodsRecommends"></detail-recommend>
       </better-scroll>
-      <detail-tab-bar></detail-tab-bar>
+      <detail-tab-bar :id="getIid" v-bind="$attrs"></detail-tab-bar>
       <back-top @click="backToTop" v-show="isbacktotop"></back-top>
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
   },
   computed:{
     getIid(){
-      return this.$route.params.iid
+      return this.$route.query.iid
     }
   },
   methods:{

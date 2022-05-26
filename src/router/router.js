@@ -29,8 +29,8 @@ const routes=[
         component:Account
     },
     {
-        path:'/detail/:iid',
-        component:Detail
+        path:'/detail',              //路由跳转的方式  一是params   获取则this.$route.params
+        component:Detail            //另外一种 query  获取 是this.$route.query
     }
 ]
 

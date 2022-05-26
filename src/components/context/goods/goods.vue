@@ -35,7 +35,12 @@ export default {
   },
   methods:{
       goDetail(iid){
-          this.$router.push('/detail/'+iid)
+          this.$router.push({
+              path:"/detail",
+              query:{
+                  iid:iid
+              }
+          })
       }
   }
 }

@@ -33,7 +33,7 @@ export default {
   },
   data () {
     return {
-      homedata:this.$store.state.homeModule.carouseldata,     //利用vuex缓存一下轮播图里的图片 因为申请数据太慢
+      homedata:{},     //
       goods:{    //商品列表数据
         "pop":{page:0,list:[]},
         "new":{page:0,list:[]},
@@ -46,12 +46,9 @@ export default {
     };
   },
   created(){
-    if(this.$store.state.homeModule.carouseldata.length == 0){
-      getHomeCarousel().then((res)=>{
+    getHomeCarousel().then((res)=>{
       this.homedata =res.data.data.banner.list
-      this.$store.state.homeModule.carouseldata=this.homedata
-      })
-    };
+    });
     getGoods("pop",1).then(res=>{
       this.goods["pop"].list.push(...res.data.data.list)
     });

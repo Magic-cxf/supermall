@@ -35,7 +35,9 @@ export default {
       this.iscollect = !this.iscollect
     },
     addCart(){
+      console.log(this.$attrs)
       this.$test.show("加入购物车成功！")
+      this.$store.commit('addGood',this.$attrs.id)
     }
   }
 }
