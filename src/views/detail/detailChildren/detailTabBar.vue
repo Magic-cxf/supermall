@@ -16,7 +16,7 @@
       <br>
       <span :class="{collectText:iscollect}">收藏</span>     
     </div>
-    <div class="cart">
+    <div class="tabbarcart">
       <div @click="addCart">加入购物车</div>
       <div >立即购买</div>
     </div>
@@ -35,9 +35,8 @@ export default {
       this.iscollect = !this.iscollect
     },
     addCart(){
-      console.log(this.$attrs)
       this.$test.show("加入购物车成功！")
-      this.$store.commit('addGood',this.$attrs.id)
+      this.$store.dispatch('addGood',this.$attrs.goodToCart)
     }
   }
 }
@@ -78,14 +77,14 @@ export default {
   font-size: 12px;
   width: 50px;
 }
-.cart{
+.tabbarcart{
   flex: 1;
   margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.cart div{
+.tabbarcart div{
   height: 42px;
   line-height: 42px;
   width: 90px;
@@ -93,13 +92,13 @@ export default {
   font-size: 14px;
   color: white;
 }
-.cart div:first-child{
+.tabbarcart div:first-child{
   padding-left: 10px;
   background-color: rgb(255, 155, 0);
   border-top-left-radius: 21px;
   border-bottom-left-radius: 21px;
 }
-.cart div:last-child{
+.tabbarcart div:last-child{
   padding-right: 10px;
   background-color: rgb(255, 95, 2);
   border-top-right-radius: 21px;

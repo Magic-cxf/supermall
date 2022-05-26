@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="cart">
     <cart-head></cart-head>
     <better-scroll>
       <cart-good></cart-good>

@@ -42,7 +42,12 @@ export default {
       currentType:"pop",    //当前类型
       isbacktop:false,     //是否回到顶部
       isshow:false,       
-      scrollposition:null
+      scrollposition:null,
+      typePosition:{
+        "pop":0,
+        "new":0,
+        "sell":0
+      }
     };
   },
   created(){
@@ -74,6 +79,9 @@ export default {
   },
   methods:{
     changeType(index){
+
+      this.typePosition[this.currentType] = this.$refs.scroll.scroll.y  //增加新功能 留痕迹
+
       if(index == 0){
         this.currentType = "pop"
       }else if(index ==1){
@@ -81,8 +89,12 @@ export default {
       }else{
         this.currentType = "sell"
       }
+
+      this.$refs.scroll.scroll.scrollTo(0,this.typePosition[this.currentType])  //增加新功能 留痕
+
       this.$refs.recommend.currentIndex = index
       this.$refs.recommend1.currentIndex = index
+
     },
     contextScroll(position){
       if(position.y < -800){

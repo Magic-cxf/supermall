@@ -10,7 +10,7 @@
         <detail-comments :comments="goodInfo.comments" ref="customerComments"></detail-comments>
         <detail-recommend :recommends="goodInfo.recommends" ref="goodsRecommends"></detail-recommend>
       </better-scroll>
-      <detail-tab-bar :id="getIid" v-bind="$attrs"></detail-tab-bar>
+      <detail-tab-bar :goodToCart="goodToCart" ></detail-tab-bar>
       <back-top @click="backToTop" v-show="isbacktotop"></back-top>
   </div>
 </template>
@@ -42,7 +42,8 @@ export default {
       iid:null,
       goodInfo:new goodInfo(),
       eleHeight:[0,null,null,null,Infinity],
-      isbacktotop:false
+      isbacktotop:false,
+      goodToCart:{}
     };
   },
   components:{
@@ -71,6 +72,16 @@ export default {
       this.goodInfo.shopInfo = res.data.result.shopInfo
       this.goodInfo.comments = res.data.result.rate.list
       this.goodInfo.recommends = res.data.result.skuInfo.skus
+
+      this.goodToCart['iid'] = this.getIid
+      this.goodToCart['shopName'] = res.data.result.shopInfo.name
+      this.goodToCart['price'] = this.goodInfo.price
+      this.goodToCart['title'] = this.goodInfo.description
+      this.goodToCart['img'] = this.goodInfo.carouselImgs[0]
+      this.goodToCart['count'] = 1
+      // console.log(this.goodToCart)
+      // console.log(res.data)
+
     })
   },
   computed:{
