@@ -43,6 +43,9 @@ export default {
 
 </script>
 <style scoped>
+*{
+  box-sizing: border-box;
+}
 .footBar{
   width: 100vw;
   height: 49px;
@@ -79,10 +82,10 @@ export default {
 }
 .tabbarcart{
   flex: 1;
-  margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left: 40px;
 }
 .tabbarcart div{
   height: 42px;

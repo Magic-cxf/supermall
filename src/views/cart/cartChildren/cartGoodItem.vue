@@ -28,18 +28,27 @@
 
 <script>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default {
     name:"cartGoodItem",
     data () {
         return {}
     },
+    props:{
+        iid:{
+            type:String
+        }
+    },
     setup(props,context){
         const isactive = ref(false)
+        const store = useStore()
 
+ 
         const selectCartGood = function(){
             isactive.value = !isactive.value
-            console.log("hdhdh")
+            store.dispatch('goodSelect',props['iid'])   //向vuex报告  商品被选中了
+         
         }
 
         return{ isactive,selectCartGood}

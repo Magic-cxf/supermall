@@ -79,6 +79,7 @@ export default {
       this.goodToCart['title'] = this.goodInfo.description
       this.goodToCart['img'] = this.goodInfo.carouselImgs[0]
       this.goodToCart['count'] = 1
+      this.goodToCart['isSelect'] = false
       // console.log(this.goodToCart)
       // console.log(res.data)
 

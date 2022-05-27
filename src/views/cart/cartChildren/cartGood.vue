@@ -1,6 +1,6 @@
 <template>
     <div class="myCart">
-        <cart-good-item v-for="item in $store.state.cartGood" :key="item">
+        <cart-good-item v-for="item in $store.state.cartGood" :key="item" :iid = "item['iid']">
             <template #shopName>
                 {{item['shopName']}}
             </template>
@@ -11,7 +11,7 @@
                 {{item['title']}}
             </template>
             <template #cartprice>
-                {{item['price']}}
+                ￥{{item['price']}}
             </template>
             <template #cartcount>
                 {{item['count']}}
@@ -39,7 +39,6 @@ export default {
 <style scoped>
 .myCart{
     width: 100vw;
-    background-color: rgba(217, 217, 219,0.3);
     padding-top: 8px;
     padding-bottom: 8px;
 }

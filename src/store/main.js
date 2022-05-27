@@ -4,22 +4,27 @@ import {createStore} from 'vuex'
 const store = createStore({
     state(){
         return {
-            cartGood:[]          //购物车商品
+            cartGood:[],          //购物车商品
         }
     },
     mutations:{
-        incrementGood(state,payload){
+        incrementGood(state,payload){   //向购物车增加商品
             state.cartGood.push(payload)
         },
-        incrementCount(state,payload){
+        incrementCount(state,payload){   //向购物车增加商品的个数
             state.cartGood[payload]['count']++
+        },
+        isChecked(state,payload){
+            state.cartGood[payload]['isSelect'] = true
+        },
+        cancleChecked(state,payload){
+            state.cartGood[payload]['isSelect'] = false
         }
     },
     actions:{
-        addGood({state, commit,getters},payload){
+        addGood({state, commit,getters},payload){  //向购物车增加商品
             if(getters.length == 0 ){
                 commit('incrementGood',payload)
-                console.log(state.cartGood)
                 return 
             }
             for(let index in state.cartGood){
@@ -29,15 +34,26 @@ const store = createStore({
                 }
             }
             commit('incrementGood',payload)
-            
-            console.log(state.cartGood)
-
+        },
+        goodSelect({commit,state},payload){
+            for(let index in state.cartGood){
+                if(state.cartGood[index]['iid'] == payload){
+                    commit('cancleChecked',index)
+                }
+            }
+        },
+        cancleSlect({commit,state},payload){
+            for(let index in state.cartGood){
+                if(state.cartGood[index]['iid'] == payload){
+                    commit('isChecked',index)
+                }
+            }
         }
     },
     getters:{
-        length(state){
+        length(state){   //购物车中商品的数量
             return state.cartGood.length
-        }
+        },
     },
     modules:{}
 
