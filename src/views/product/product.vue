@@ -1,13 +1,16 @@
 <template>
   <div>
-    <left-side></left-side>
+    <product-head></product-head>
+    <left-side @typechange = "typeChange" ref="leftside"></left-side>
+    <main-show ref="mainshow"></main-show>
   </div>
 </template>
 
 <script>
+import productHead from './productChildren/productHead'
 import leftSide from './productChildren/leftSide'
+import mainShow from './productChildren/mainShow'
 
-import getCategory from 'network/product'
 
 export default {
   data () {
@@ -15,14 +18,15 @@ export default {
       categoryData:{}
     };
   },
-  created(){
-    getCategory().then(res=>{
-      this.categoryData = res
-      console.log(res)
-    })
-  },
   components:{
-    leftSide
+    leftSide,
+    productHead,
+    mainShow
+  },
+  methods:{
+    typeChange(index){
+      this.$refs.mainshow.mes = this.$refs.leftside.type[index]
+    }
   }
 }
 
