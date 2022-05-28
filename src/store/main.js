@@ -19,14 +19,14 @@ const store = createStore({
             state.cartList.get(payload['iid'])['isSelect'] = payload['status'] 
         },
         selectAllGood(state){                             //所有商品全选
-            state.cartList.forEach((value,key)=>{
+            for(let value of state.cartList.values()){
                 value.isSelect = true
-            })
+            }
         },
         cancleAllGood(state){                               //取消所有商品全选
-            state.cartList.forEach((value,key)=>{
+            for(let value of state.cartList.values()){
                 value.isSelect =false
-            })
+            }
         }                     
 
     },
@@ -46,20 +46,20 @@ const store = createStore({
         },
         totalPrice(state){                         //计算选中的商品的价格
             let price = 0
-            state.cartList.forEach((value,key)=>{
+            for(let value of state.cartList.values()){
                 if(value.isSelect == true){
-                    price+=parseInt(value.price)*value.count
+                    price+=parseFloat(value.price).toFixed(2)*value.count
                 }
-            })
-            return price
+            }
+            return price.toFixed(2)
         },
         isSelectAll(state){                  //计算是否所有的商品都被选中
             let result = true
-            state.cartList.forEach((value,key)=>{
+            for(let value of state.cartList.values()){
                 if(value.isSelect == false){
                     result = false
                 }
-            })
+            }
             return result
         }
 
