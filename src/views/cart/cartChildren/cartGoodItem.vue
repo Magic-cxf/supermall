@@ -33,9 +33,6 @@ export default {
     data () {
         return {}
     },
-    // created(){
-    //     console.log(this.$store.state.cartList.get(this.iid).isSelect)
-    // },
     props:{
         iid:{
             type:String
