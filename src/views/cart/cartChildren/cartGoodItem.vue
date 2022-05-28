@@ -3,22 +3,22 @@
       <div class="infoTit">
           <span :class="{active1:isactive}" @click="selectCartGood">✔</span>
           <span>
-              <slot name="shopName"></slot>
+              {{item['shopName']}}
           </span>
       </div>
       <div class="infos">
           <span :class="{active1:isactive}" @click="selectCartGood">✔</span>
-          <slot name="cartpicture"></slot>
+          <img :src="item['img']" alt="">
           <div class="infoSelect">
               <p>
-                  <slot name="carttitle"></slot>
+                  {{item['title']}}
               </p>
               <p>选择的商品规格</p>
               <span class="cartprice">
-                  <slot name="cartprice"></slot>
+                  {{item['price']}}
               </span>
               <span class="cartnumber">
-                  x<slot name="cartcount"></slot>
+                  x{{item['count']}}
               </span>
           </div>
       </div>
@@ -27,32 +27,38 @@
 <!-- 这是商品的一些基本信息展示✔ -->
 
 <script>
-import { ref } from 'vue'
-import { useStore } from 'vuex'
 
 export default {
     name:"cartGoodItem",
     data () {
         return {}
     },
+    // created(){
+    //     console.log(this.$store.state.cartList.get(this.iid).isSelect)
+    // },
     props:{
         iid:{
             type:String
+        },
+        item:{
+            type:Object
         }
     },
-    setup(props,context){
-        const isactive = ref(false)
-        const store = useStore()
-
- 
-        const selectCartGood = function(){
-            isactive.value = !isactive.value
-            store.dispatch('goodSelect',props['iid'])   //向vuex报告  商品被选中了
-         
+    methods:{
+        selectCartGood(){
+            if(this.isactive){
+                this.$store.commit('changedSelectStatus',{iid:this.iid,status:false})
+            }else{
+                this.$store.commit('changedSelectStatus',{iid:this.iid,status:true})
+            }
+            
         }
-
-        return{ isactive,selectCartGood}
     },
+    computed:{
+        isactive(){
+            return this.$store.state.cartList.get(this.iid)['isSelect']
+        }
+    }
 }
 
 </script>

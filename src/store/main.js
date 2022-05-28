@@ -1,62 +1,70 @@
+
 import {createStore} from 'vuex'
 
 
 const store = createStore({
     state(){
         return {
-            cartGood:[],          //购物车商品
+            cartList:new Map(),  //利用map结构来存储客户的购物车
         }
     },
     mutations:{
-        incrementGood(state,payload){   //向购物车增加商品
-            state.cartGood.push(payload)
+        incrementCount(state,payload){                  //增加已经存在的商品数量
+            state.cartList.get(payload)['count']++
         },
-        incrementCount(state,payload){   //向购物车增加商品的个数
-            state.cartGood[payload]['count']++
+        incrementGood(state,payload){ //增加不同的商品
+            state.cartList.set(payload['iid'],payload['value'])
         },
-        isChecked(state,payload){
-            state.cartGood[payload]['isSelect'] = true
+        changedSelectStatus(state,payload){               //修改商品的状态
+            state.cartList.get(payload['iid'])['isSelect'] = payload['status'] 
         },
-        cancleChecked(state,payload){
-            state.cartGood[payload]['isSelect'] = false
-        }
+        selectAllGood(state){                             //所有商品全选
+            state.cartList.forEach((value,key)=>{
+                value.isSelect = true
+            })
+        },
+        cancleAllGood(state){                               //取消所有商品全选
+            state.cartList.forEach((value,key)=>{
+                value.isSelect =false
+            })
+        }                     
+
     },
     actions:{
-        addGood({state, commit,getters},payload){  //向购物车增加商品
-            if(getters.length == 0 ){
+        addGood({state,commit},payload){              //向购物车增加商品   使用map结构真好用
+            if(state.cartList.has(payload['iid'])){
+                commit('incrementCount',payload['iid'])
+            }else{
                 commit('incrementGood',payload)
-                return 
             }
-            for(let index in state.cartGood){
-                if(state.cartGood[index]['iid'] == payload['iid']){
-                    commit('incrementCount',index)
-                    return 
-                }
-            }
-            commit('incrementGood',payload)
-        },
-        goodSelect({commit,state},payload){
-            for(let index in state.cartGood){
-                if(state.cartGood[index]['iid'] == payload){
-                    commit('cancleChecked',index)
-                }
-            }
-        },
-        cancleSlect({commit,state},payload){
-            for(let index in state.cartGood){
-                if(state.cartGood[index]['iid'] == payload){
-                    commit('isChecked',index)
-                }
-            }
+            
         }
     },
     getters:{
-        length(state){   //购物车中商品的数量
-            return state.cartGood.length
+        length(state){          //购物车商品数量
+            return state.cartList.size
         },
+        totalPrice(state){                         //计算选中的商品的价格
+            let price = 0
+            state.cartList.forEach((value,key)=>{
+                if(value.isSelect == true){
+                    price+=parseInt(value.price)*value.count
+                }
+            })
+            return price
+        },
+        isSelectAll(state){                  //计算是否所有的商品都被选中
+            let result = true
+            state.cartList.forEach((value,key)=>{
+                if(value.isSelect == false){
+                    result = false
+                }
+            })
+            return result
+        }
+
     },
     modules:{}
-
 })
 
 

@@ -1,21 +1,7 @@
 <template>
     <div class="myCart">
-        <cart-good-item v-for="item in $store.state.cartGood" :key="item" :iid = "item['iid']">
-            <template #shopName>
-                {{item['shopName']}}
-            </template>
-            <template #cartpicture>
-                <img :src="item['img']" alt="">
-            </template>
-            <template #carttitle>
-                {{item['title']}}
-            </template>
-            <template #cartprice>
-                ￥{{item['price']}}
-            </template>
-            <template #cartcount>
-                {{item['count']}}
-            </template>
+        <cart-good-item v-for="[key,value] of $store.state.cartList.entries()" :iid= "key" :key="key" :item = "value">
+
         </cart-good-item>
     </div>
 </template>

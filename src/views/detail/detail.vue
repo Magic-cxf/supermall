@@ -43,7 +43,7 @@ export default {
       goodInfo:new goodInfo(),
       eleHeight:[0,null,null,null,Infinity],
       isbacktotop:false,
-      goodToCart:{}
+      goodToCart:{iid:null,value:{}}
     };
   },
   components:{
@@ -74,12 +74,12 @@ export default {
       this.goodInfo.recommends = res.data.result.skuInfo.skus
 
       this.goodToCart['iid'] = this.getIid
-      this.goodToCart['shopName'] = res.data.result.shopInfo.name
-      this.goodToCart['price'] = this.goodInfo.price
-      this.goodToCart['title'] = this.goodInfo.description
-      this.goodToCart['img'] = this.goodInfo.carouselImgs[0]
-      this.goodToCart['count'] = 1
-      this.goodToCart['isSelect'] = false
+      this.goodToCart['value']['shopName'] = res.data.result.shopInfo.name
+      this.goodToCart['value']['price'] = this.goodInfo.price
+      this.goodToCart['value']['title'] = this.goodInfo.description
+      this.goodToCart['value']['img'] = this.goodInfo.carouselImgs[0]
+      this.goodToCart['value']['count'] = 1
+      this.goodToCart['value']['isSelect'] = true
       // console.log(this.goodToCart)
       // console.log(res.data)
 

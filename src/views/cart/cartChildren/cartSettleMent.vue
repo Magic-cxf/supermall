@@ -6,7 +6,7 @@
       </div>
       <div class="allPrice">
           合计:
-          <span class="totalprice">￥{{$store.getters.isCartGoodSelectAll|| 0}}</span>
+          <span class="totalprice">￥{{$store.getters.totalPrice|| 0}}</span>
           <span class="jiesuan">
               结算
           </span>
@@ -18,14 +18,25 @@
 export default {
   data () {
     return {
-        isSelectAll:false
+       
     };
   },
   methods:{
       selectAllGood(){
-          this.isSelectAll = !this.isSelectAll
+          if(this.isSelectAll){
+              //取消全部选中
+              this.$store.commit('cancleAllGood')
+          }else{
+              //全选所有商品
+              this.$store.commit('selectAllGood')
+          }
       }
   },
+  computed:{
+      isSelectAll(){
+          return this.$store.getters.isSelectAll && this.$store.getters.length
+      }
+  }
 }
 
 </script>
